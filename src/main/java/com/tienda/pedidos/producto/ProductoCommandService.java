@@ -15,12 +15,12 @@ public class ProductoCommandService {
         return productoRepository.save(producto);
     }
 
-    public synchronized Producto discreaseStock(String id, int cantidad) {
+    public synchronized Producto decreaseStock(String id, int cantidad) {
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+                .orElseThrow(ProductoNotFoundException::new);
 
         if (producto.getStock() < cantidad) {
-            throw new RuntimeException("Stock insuficiente");
+            throw new OutOfStockException();
         }
 
         producto.setStock(producto.getStock() - cantidad);
@@ -29,8 +29,7 @@ public class ProductoCommandService {
 
     public synchronized Producto increaseStock(String id, int cantidad) {
         Producto producto = productoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
-
+                .orElseThrow(ProductoNotFoundException::new);
 
         producto.setStock(producto.getStock() + cantidad);
         return productoRepository.save(producto);

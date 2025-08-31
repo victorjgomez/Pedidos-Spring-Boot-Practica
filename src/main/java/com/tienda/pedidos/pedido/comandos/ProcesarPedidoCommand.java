@@ -35,7 +35,7 @@ public class ProcesarPedidoCommand extends Comando {
         ArrayList<ProductoPedido> productos = pedido.getProductos();
 
         for (ProductoPedido productoPedido : productos){
-            productoCommandService.discreaseStock(productoPedido.getProducto().getSku(), productoPedido.getCantidad());
+            productoCommandService.decreaseStock(productoPedido.getProducto().getSku(), productoPedido.getCantidad());
         }
 
         boolean permiso = this.cobroService.process(pedido);
