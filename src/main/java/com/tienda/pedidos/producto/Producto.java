@@ -9,14 +9,16 @@ import java.math.BigDecimal;
 public class Producto {
     @Id
     private String sku;
+    private String nombre;
     private BigDecimal precio;
     private int stock;
 
     public Producto() {
     }
 
-    public Producto(String sku, BigDecimal precio, int stockInicial) {
+    public Producto(String sku, String nombre, BigDecimal precio, int stockInicial) {
         this.sku = sku;
+        this.nombre = nombre;
         this.precio = precio;
         this.stock = stockInicial;
     }
@@ -27,6 +29,14 @@ public class Producto {
 
     public void setSku(String sku) {
         this.sku = sku;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public BigDecimal getPrecio() {
@@ -49,6 +59,7 @@ public class Producto {
     public String toString() {
         return "producto{" +
                 "sku='" + sku + '\'' +
+                ", nombre='" + nombre + '\'' +
                 ", precio=" + precio +
                 ", stockInicial=" + stock +
                 '}';

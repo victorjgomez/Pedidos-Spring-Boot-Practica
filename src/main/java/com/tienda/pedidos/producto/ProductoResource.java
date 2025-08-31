@@ -19,7 +19,12 @@ public class ProductoResource {
 
     @PostMapping(value = "/products")
     public Producto crearProducto(@RequestBody Producto producto){
-        return productoCommandService.crearProducto(producto);
+        return productoCommandService.crearProducto(
+                producto.getSku(),
+                producto.getNombre(),
+                producto.getPrecio(),
+                producto.getStock()
+        );
     }
 
 
