@@ -2,6 +2,8 @@ package com.tienda.pedidos.producto;
 
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 @Service
 public class ProductoCommandService {
 
@@ -11,7 +13,8 @@ public class ProductoCommandService {
         this.productoRepository = productoRepository;
     }
 
-    public Producto crearProducto(Producto producto) {
+    public Producto crearProducto(String sku, String nombre, BigDecimal precio, int stock) {
+        Producto producto = new Producto(sku, nombre, precio, stock);
         return productoRepository.save(producto);
     }
 
