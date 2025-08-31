@@ -10,4 +10,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
     public ArrayList<Pedido> findByEstado(Estado estado);
 
     public ArrayList<Pedido> findByfecha(Date fecha);
+
+    public ArrayList<Pedido> findByFechaBetween(Date from, Date to);
 }
