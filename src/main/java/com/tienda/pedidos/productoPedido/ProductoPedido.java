@@ -16,7 +16,7 @@ public class ProductoPedido {
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "orderId", nullable = false)
+    @JoinColumn(name = "pedido_id", referencedColumnName = "orderId", nullable = false)
     private Pedido pedido;
 
     private int cantidad;
