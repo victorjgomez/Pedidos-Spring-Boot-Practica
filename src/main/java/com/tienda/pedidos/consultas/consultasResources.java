@@ -36,7 +36,14 @@ public class consultasResources {
     }
 
     @RequestMapping(value = "/reports/daily-sales")
-    public ArrayList<Pedido> pedidosByFecha(@RequestParam Date fecha){
-        return (ArrayList<Pedido>) pedidoQueryService.getPedidosByFecha(fecha);
+    public ArrayList<Pedido> pedidosByFecha(@RequestParam(required = false) Date from,
+                                           @RequestParam(required = false) Date to,
+                                           @RequestParam(required = false) Date fecha) {
+        if (from != null && to != null) {
+            return (ArrayList<Pedido>) pedidoQueryService.getPedidosByFechaBetween(from, to);
+        } else if (fecha != null) {
+            return (ArrayList<Pedido>) pedidoQueryService.getPedidosByFecha(fecha);
+        }
+        return new ArrayList<>();
     }
 }

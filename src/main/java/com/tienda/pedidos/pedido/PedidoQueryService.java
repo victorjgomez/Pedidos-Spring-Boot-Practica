@@ -4,6 +4,7 @@ package com.tienda.pedidos.pedido;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 @Service
 public class PedidoQueryService {
@@ -22,7 +23,11 @@ public class PedidoQueryService {
         return pedidoRepository.findByEstado(estado);
     }
 
-    public ArrayList<Pedido> getPedidosByFecha(java.util.Date fecha) {
-        return pedidoRepository.findByfecha(fecha);
+    public ArrayList<Pedido> getPedidosByFecha(Date fecha) {
+        return pedidoRepository.findByFecha(fecha);
+    }
+
+    public ArrayList<Pedido> getPedidosByFechaBetween(Date from, Date to) {
+        return pedidoRepository.findByFechaBetween(from, to);
     }
 }
