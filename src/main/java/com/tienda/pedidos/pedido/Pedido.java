@@ -1,11 +1,13 @@
 package com.tienda.pedidos.pedido;
 
 import com.tienda.pedidos.productoPedido.ProductoPedido;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Pedido {
@@ -13,7 +15,8 @@ public class Pedido {
     @Id
     private int orderId;
 
-    private ArrayList<ProductoPedido> productos;
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<ProductoPedido> productos;
 
     private Estado estado;
 
@@ -22,7 +25,7 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int orderId, ArrayList<ProductoPedido> productos, Estado estado, Date fecha) {
+    public Pedido(int orderId, List<ProductoPedido> productos, Estado estado, Date fecha) {
         this.orderId = orderId;
         this.productos = productos;
         this.estado = estado;
@@ -37,11 +40,11 @@ public class Pedido {
         this.orderId = orderId;
     }
 
-    public ArrayList<ProductoPedido> getProductos() {
+    public List<ProductoPedido> getProductos() {
         return productos;
     }
 
-    public void setProductos(ArrayList<ProductoPedido> productos) {
+    public void setProductos(List<ProductoPedido> productos) {
         this.productos = productos;
     }
 
