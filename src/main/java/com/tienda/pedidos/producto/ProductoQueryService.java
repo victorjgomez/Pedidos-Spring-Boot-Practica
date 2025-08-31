@@ -12,7 +12,7 @@ public class ProductoQueryService {
     }
 
     public Producto getProductoById(String id) {
-        return productoRepository.findById(id).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        return productoRepository.findById(id).orElseThrow(ProductoNotFoundException::new);
     }
 
 }
